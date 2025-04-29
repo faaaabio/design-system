@@ -7,58 +7,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            /* Colors */
-            --primary-color: #000000;
-            --secondary-color: #333333;
-            --accent-color: #000000;
-            --background-color: #FFFFFF;
-            --sidebar-bg: #F5F3EE;
-            --content-bg: #FFFFFF;
-            --text-color: #000000;
-            --light-text: #555555;
-            --border-color: rgba(0, 0, 0, 0.1);
-            --card-bg: rgba(0, 0, 0, 0.03);
-            --card-hover: rgba(0, 0, 0, 0.05);
-            --code-bg: #F5F3EE;
-            --highlight-bg: #FFFACC;
-            
-            /* Spacing */
-            --spacing-xs: 0.25rem;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 1.5rem;
-            --spacing-xl: 2rem;
-            --spacing-2xl: 3rem;
-            --spacing-3xl: 4rem;
-            
-            /* Typography */
-            --text-xs: 0.75rem;
-            --text-sm: 0.9rem;
-            --text-base: 1rem;
-            --text-md: 1.1rem;
-            --text-lg: 1.2rem;
-            --text-xl: 1.5rem;
-            --text-2xl: 2rem;
-            --text-3xl: 2.5rem;
-            
-            /* Borders */
-            --radius-sm: 0.25rem;
-            --radius-md: 0.5rem;
-            --radius-lg: 0.75rem;
-            --radius-full: 100px;
-        }
-
+        /* Reset e variáveis (usando as do segundo HTML) */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #333333;
+            --accent-color: #000000; /* Assuming accent is same as primary/text based on demos */
+            --background-color: #E7E5DE; /* Using E7E5DE from second HTML demo */
+            --text-color: #000000;
+            --light-text: #333333; /* Using 333333 from second HTML demo */
+            --border-color: rgba(0, 0, 0, 0.1);
+            --card-bg: rgba(0, 0, 0, 0.03);
+            --card-hover: rgba(0, 0, 0, 0.05);
+            --code-bg: #F5F3EE; /* From original */
+            --highlight-bg: #FFFACC; /* From original */
+
+
+            /* Max Width (from second HTML) */
+            --max-width: 1200px; /* Not directly used in this layout, but kept for potential content */
+
+            /* Spacing (from second HTML) */
+            --spacing-xs: 0.25rem;  /* 4px */
+            --spacing-sm: 0.5rem;   /* 8px */
+            --spacing-md: 1rem;     /* 16px */
+            --spacing-lg: 1.5rem;   /* 24px */
+            --spacing-xl: 2rem;     /* 32px */
+            --spacing-2xl: 3rem;    /* 48px */
+            --spacing-3xl: 4rem;    /* 64px */
+            --spacing-4xl: 6rem;    /* 96px */ /* Used for section padding */
+            --spacing-5xl: 8rem;    /* 128px */
+
+            /* Typography (from second HTML) */
+            --text-xs: 0.75rem;     /* 12px */
+            --text-sm: 0.9rem;      /* 14px */
+            --text-base: 1rem;      /* 16px */
+            --text-md: 1.1rem;      /* 18px */
+            --text-lg: 1.2rem;      /* 20px */
+            --text-xl: 1.5rem;      /* 24px */
+            --text-2xl: 2rem;       /* 32px */
+            --text-3xl: 2.5rem;     /* 40px */ /* H1 size on mobile from second html */
+            --text-4xl: 3rem;       /* 48px */ /* H2 size on mobile from second html */
+            --text-5xl: 4.5rem;     /* 72px */ /* H1 size desktop from second html */
+
+
+            /* Borders (using mix of both, leaning towards second) */
+            --radius-sm: 0.5rem;    /* 8px */ /* From second */
+            --radius-md: 1rem;      /* 16px */ /* From second */
+            --radius-lg: 1.5rem;    /* 24px */ /* From second */
+            --radius-full: 100px;   /* Bordas totalmente arredondadas */
+
+            /* Layout specifics */
+            --header-height: 60px; /* Define header height */
+            --sidebar-width: 260px; /* Define sidebar width */
+            --sidebar-width-md: 220px; /* Define sidebar width for medium screens */
+        }
+
         body {
             font-family: 'Epilogue', sans-serif;
             font-weight: 400;
-            line-height: 1.6;
+            line-height: 1.6; /* Adjusted line-height slightly */
             letter-spacing: -0.3px;
             color: var(--text-color);
             background-color: var(--background-color);
@@ -69,12 +81,33 @@
         a {
             color: var(--text-color);
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.2s ease; /* Kept simple transition from original */
+             position: relative; /* From second HTML */
+        }
+         a::after { /* Underline effect from second HTML */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--text-color);
+            transition: width 0.3s ease;
+        }
+         a:hover::after {
+            width: 100%;
         }
 
+
         a:hover {
-            opacity: 0.8;
+            opacity: 0.8; /* Kept simple hover from original */
         }
+         /* Ensure text links inherit color and underline */
+        p a, li a {
+             color: var(--text-color);
+             text-decoration: none;
+        }
+
 
         /* Layout */
         .app-container {
@@ -89,14 +122,16 @@
             top: 0;
             left: 0;
             right: 0;
-            background-color: var(--content-bg);
+            background-color: var(--background-color); /* Used background color for header */
             border-bottom: 1px solid var(--border-color);
             padding: var(--spacing-md) var(--spacing-xl);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 100;
-            height: 60px;
+            height: var(--header-height);
+            backdrop-filter: blur(10px); /* Blur effect from second HTML */
+             background-color: rgba(231, 229, 222, 0.8); /* Semi-transparent background */
         }
 
         .logo {
@@ -108,7 +143,7 @@
         }
 
         .logo img {
-            height: 30px;
+            height: 30px; /* Kept original logo size */
             width: auto;
         }
 
@@ -120,19 +155,26 @@
 
         .top-nav a {
             font-size: var(--text-sm);
+             /* Remove underline for top nav links */
+            text-decoration: none;
         }
+         .top-nav a::after {
+             display: none;
+         }
+
 
         /* Sidebar */
         .sidebar {
-            width: 260px;
+            width: var(--sidebar-width);
             background-color: var(--sidebar-bg);
-            height: 100vh;
+            height: calc(100vh - var(--header-height)); /* Height adjusted for fixed header */
             position: fixed;
-            top: 60px;
+            top: var(--header-height); /* Position below header */
             left: 0;
             overflow-y: auto;
             padding: var(--spacing-xl) 0;
             border-right: 1px solid var(--border-color);
+            z-index: 90;
         }
 
         .sidebar-section {
@@ -162,83 +204,111 @@
             padding: var(--spacing-xs) 0;
             font-size: var(--text-sm);
             color: var(--text-color);
+             text-decoration: none; /* Remove underline */
         }
+         .sidebar-menu a::after {
+             display: none;
+         }
+
 
         .sidebar-menu a.active {
             font-weight: 600;
         }
 
         .sidebar-menu a:hover {
-            opacity: 0.7;
+            opacity: 0.7; /* Kept simple hover */
         }
 
         /* Main Content */
         .main-content {
-            margin-left: 260px;
-            margin-top: 60px;
+            margin-left: var(--sidebar-width);
+            margin-top: var(--header-height); /* Add margin top for fixed header */
             padding: var(--spacing-2xl);
-            width: calc(100% - 260px);
-            background-color: var(--content-bg);
+            width: calc(100% - var(--sidebar-width));
+            background-color: var(--content-bg); /* From original */
+            min-height: calc(100vh - var(--header-height)); /* Ensure min-height */
         }
 
-        /* Component Display */
-        .component-header {
-            margin-bottom: var(--spacing-2xl);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: var(--spacing-lg);
+        /* Component Display Sections (using .ds-section naming from second HTML) */
+        .ds-section {
+            padding: var(--spacing-xl); /* Padding inside the section box */
+            margin-bottom: var(--spacing-2xl); /* Space between sections */
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background-color: var(--content-bg); /* Ensure background color */
         }
 
-        .component-title {
-            font-size: var(--text-3xl);
-            font-weight: 500;
-            margin-bottom: var(--spacing-md);
+        .ds-section > h2 { /* Adjust h2 margin within ds-section */
+             margin-top: 0;
+             margin-bottom: var(--spacing-xl);
+        }
+         .ds-section > h3 { /* Adjust h3 margin within ds-section */
+             margin-top: var(--spacing-xl);
+             margin-bottom: var(--spacing-lg);
+         }
+
+        /* Global Typography (using second HTML styles) */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 400; /* From second HTML */
+            line-height: 1.1; /* From second HTML */
+            margin-bottom: var(--spacing-md); /* Default margin */
+            margin-top: var(--spacing-lg); /* Default margin */
         }
 
-        .component-description {
-            font-size: var(--text-md);
-            color: var(--light-text);
-            max-width: 700px;
+        h1 { font-size: var(--text-5xl); margin-bottom: var(--spacing-xl); }
+        h2 { font-size: var(--text-2xl); margin-bottom: var(--spacing-xl); }
+        h3 { font-size: var(--text-lg); margin-bottom: var(--spacing-md); }
+        p { margin-bottom: var(--spacing-md); }
+
+
+        /* Specific Section Header (for the very first section like Introduction) */
+        .section-header {
+             margin-bottom: var(--spacing-2xl);
+             padding-bottom: var(--spacing-lg);
+             border-bottom: 1px solid var(--border-color);
+        }
+        .section-header > h1, .section-header > h2 {
+             margin-top: 0;
         }
 
-        .component-tag {
-            display: inline-flex;
-            gap: 0.5rem;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.05);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--radius-full);
-            margin-bottom: var(--spacing-md);
-            font-size: var(--text-xs);
-        }
 
-        /* Demo Area */
+        /* Demo Area (based on original, using .demo-area) */
         .demo-area {
-            margin-bottom: var(--spacing-2xl);
+            margin-bottom: var(--spacing-xl); /* Space below the demo block */
         }
 
         .demo-tabs {
             display: flex;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: var(--spacing-lg);
+             padding-left: var(--spacing-md); /* Add some padding */
         }
 
         .demo-tab {
-            padding: var(--spacing-sm) var(--spacing-lg);
+            padding: var(--spacing-sm) var(--spacing-md); /* Adjusted padding */
             cursor: pointer;
             font-size: var(--text-sm);
             font-weight: 500;
+            margin-bottom: -1px; /* Pull tab down to overlap border */
+            transition: color 0.2s ease;
+        }
+
+        .demo-tab:hover {
+            color: var(--primary-color);
         }
 
         .demo-tab.active {
             border-bottom: 2px solid var(--primary-color);
+            color: var(--primary-color);
         }
 
         .preview-area {
             padding: var(--spacing-xl);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            margin-bottom: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg); /* Space below preview */
             position: relative;
+            background-color: var(--content-bg); /* Ensure background */
         }
 
         .preview-toolbar {
@@ -272,13 +342,68 @@
             font-family: monospace;
             font-size: var(--text-sm);
             line-height: 1.5;
+            white-space: pre-wrap; /* Allow code to wrap */
+            word-break: break-word;
         }
+
+         /* Specific demo styles from second HTML */
+        .color-sample {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-sm);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border: 1px solid rgba(0,0,0,0.1); /* Added border */
+        }
+         /* Adjust color sample text color for light backgrounds */
+        .color-sample[style*="--background-color"],
+         .color-sample[style*="var(--background-color)"],
+         .color-sample[style*="--card-bg"],
+         .color-sample[style*="var(--card-bg)"],
+         .color-sample[style*="--code-bg"],
+         .color-sample[style*="var(--code-bg)"],
+         .color-sample[style*="#E7E5DE"],
+         .color-sample[style*="rgba(0,0,0,0.03)"],
+         .color-sample[style*="#F5F3EE"] {
+             color: var(--text-color); /* Use darker text */
+         }
+
+
+        .text-sample {
+            margin-bottom: var(--spacing-lg);
+             padding: var(--spacing-md); /* Add padding to text samples */
+            border: 1px dashed var(--border-color); /* Add border to visually separate samples */
+            border-radius: var(--radius-sm);
+        }
+        .text-sample h1, .text-sample h2, .text-sample h3, .text-sample p, .text-sample .tag {
+             margin-bottom: var(--spacing-sm); /* Reduce margin bottom within samples */
+             margin-top: 0; /* Remove top margin within sample */
+        }
+         .text-sample p:last-child, .text-sample .tag:last-child {
+             margin-bottom: 0;
+         }
+
+
+        .type-scale-grid { /* Renamed for clarity */
+            display: flex; /* Kept flex layout for samples */
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .flex {            display: flex;        }
+        .gap-md {            gap: var(--spacing-md);        }
+        .flex-wrap {            flex-wrap: wrap;        }
+
 
         /* Props Table */
         .props-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: var(--spacing-xl);
+            margin-top: var(--spacing-xl); /* Space above table */
         }
 
         .props-table th,
@@ -301,7 +426,32 @@
             font-size: var(--text-xs);
         }
 
-        /* Controls Panel */
+         /* Responsive table wrapper */
+        .table-responsive {
+            overflow-x: auto; /* Habilita a rolagem horizontal se o conteúdo transbordar */
+            -webkit-overflow-scrolling: touch; /* Melhora a rolagem em dispositivos iOS */
+            margin-top: var(--spacing-xl); /* Space above table */
+            margin-bottom: var(--spacing-xl); /* Space below table */
+        }
+
+        .table-responsive table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px; /* Give it a min-width to ensure horizontal scroll on small screens */
+        }
+
+        .table-responsive th,
+        .table-responsive td {
+            white-space: normal;
+            word-break: break-word;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+            font-size: var(--text-sm);
+            text-align: left;
+        }
+
+
+        /* Controls Panel (using sidebar-bg for background) */
         .controls-panel {
             background-color: var(--sidebar-bg);
             padding: var(--spacing-lg);
@@ -329,59 +479,13 @@
             font-size: var(--text-sm);
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .sidebar {
-                width: 220px;
-            }
-            
-            .main-content {
-                margin-left: 220px;
-                width: calc(100% - 220px);
-                padding: var(--spacing-xl);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .top-header {
-                padding: var(--spacing-md);
-            }
-            
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-                z-index: 90;
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            
-            .main-content {
-                margin-left: 0;
-                width: 100%;
-                padding: var(--spacing-lg);
-            }
-
-            .menu-toggle {
-                display: block;
-                cursor: pointer;
-            }
-
-            .menu-toggle div {
-                width: 20px;
-                height: 2px;
-                background-color: var(--primary-color);
-                margin: 4px 0;
-            }
-        }
-
-        /* Additional Demo Components */
-        .component-grid {
+         /* Component Grid from second HTML */
+         .component-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: var(--spacing-md);
-            margin-bottom: var(--spacing-xl);
+            margin-top: var(--spacing-xl); /* Space above grid */
+            margin-bottom: var(--spacing-xl); /* Space below grid */
         }
 
         .component-item {
@@ -389,14 +493,26 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             text-align: center;
+            display: block; /* Ensure link fills the card area */
+            transition: all 0.2s ease;
+             /* Remove underline on hover */
+             text-decoration: none;
+        }
+         .component-item::after { display: none; }
+
+
+        .component-item:hover {
+            background-color: rgba(0, 0, 0, 0.03); /* Subtle hover effect */
+             transform: translateY(-2px);
         }
 
         .component-item-title {
             font-size: var(--text-sm);
             margin-top: var(--spacing-sm);
+            color: var(--text-color); /* Ensure title color */
         }
 
-        /* Status tags */
+        /* Status tags (from original) */
         .status-tag {
             display: inline-block;
             padding: 2px 8px;
@@ -421,147 +537,253 @@
             color: #E03131;
         }
 
-        /* Utilities */
+        /* Utilities (from second HTML) */
         .mb-sm { margin-bottom: var(--spacing-sm); }
         .mb-md { margin-bottom: var(--spacing-md); }
         .mb-lg { margin-bottom: var(--spacing-lg); }
         .mb-xl { margin-bottom: var(--spacing-xl); }
+        .mb-2xl { margin-bottom: var(--spacing-2xl); }
+
+        .mt-sm { margin-top: var(--spacing-sm); }
+        .mt-md { margin-top: var(--spacing-md); }
+        .mt-lg { margin-top: var(--spacing-lg); }
+        .mt-xl { margin-top: var(--spacing-xl); }
+        .mt-2xl { margin-top: var(--spacing-2xl); }
+        .text-center { text-align: center; }
+
+
+        /* Scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section {
+            scroll-margin-top: calc(var(--header-height) + var(--spacing-md)); /* Account for fixed header + buffer */
+        }
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                width: var(--sidebar-width-md);
+            }
+
+            .main-content {
+                margin-left: var(--sidebar-width-md);
+                width: calc(100% - var(--sidebar-width-md));
+                padding: var(--spacing-xl);
+            }
+
+             h1 { font-size: var(--text-4xl); } /* Adjust H1 size */
+             h2 { font-size: var(--text-xl); } /* Adjust H2 size */
+             h3 { font-size: var(--text-lg); } /* Adjust H3 size */
+
+             .ds-section {
+                 padding: var(--spacing-lg); /* Adjust section padding */
+             }
+        }
+
+        @media (max-width: 768px) {
+            .top-header {
+                padding: var(--spacing-md);
+                background-color: var(--background-color); /* Solid background */
+                backdrop-filter: none; /* Remove blur */
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                position: fixed; /* Ensure it's fixed when hidden */
+                top: var(--header-height); /* Align below header */
+                left: 0;
+                height: calc(100vh - var(--header-height)); /* Adjust height */
+                background-color: var(--sidebar-bg); /* Ensure background covers content behind */
+                width: 250px; /* Mobile sidebar width */
+                padding: var(--spacing-lg) 0; /* Adjust padding */
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0; /* Remove margin */
+                width: 100%; /* Take full width */
+                padding: var(--spacing-lg); /* Adjust padding */
+            }
+
+            .menu-toggle {
+                display: block; /* Show the toggle */
+                cursor: pointer;
+                padding: var(--spacing-sm); /* Add padding for easier clicking */
+                z-index: 110; /* Ensure toggle is above everything */
+            }
+
+            .menu-toggle div {
+                width: 25px;
+                height: 2px;
+                background-color: var(--primary-color);
+                margin: 5px 0;
+            }
+
+            /* Optional: Overlay or push main content when sidebar is active */
+            /* For this fixed overlay sidebar, no change needed on main content */
+
+            h1 { font-size: var(--text-3xl); } /* Adjust H1 size */
+            h2 { font-size: var(--text-xl); } /* Adjust H2 size */
+            h3 { font-size: var(--text-lg); } /* Adjust H3 size */
+
+            .ds-section {
+                 padding: var(--spacing-md); /* Further adjust section padding on smaller mobile */
+            }
+             .demo-tabs {
+                 padding-left: 0; /* Remove padding */
+             }
+
+        }
     </style>
 </head>
 <body>
     <div class="app-container">
-        <!-- Top Header -->
         <header class="top-header">
             <div class="logo">
-                <img src="https://global.divhunt.com/3e41e8f57ebbed882520a4fd1dc34dc0_1610.svg">
+                <img src="https://global.divhunt.com/3e41e8f57ebbed882520a4fd1dc34dc0_1610.svg" alt="Kaizen Logo">
                 <span>Kaizen Docs</span>
             </div>
-            <div class="menu-toggle" id="menu-toggle">
+             <div class="menu-toggle" id="menu-toggle">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
             <nav class="top-nav">
-                <a href="#">v1.0.0</a>
-                <a href="#" class="btn btn-primary" style="background: #000; color: #fff; padding: 6px 12px; border-radius: 100px; font-size: 12px;">GitHub</a>
+                <a href="#">v<span id="current-version">1.0.0</span></a> <a href="https://github.com/faaaabio/design-system" class="btn btn-primary" style="background: #000; color: #fff; padding: 6px 12px; border-radius: 100px; font-size: 12px;">GitHub</a>
             </nav>
         </header>
 
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Getting Started</h3>
                 <ul class="sidebar-menu">
-                    <li><a href="#">Introduction</a></li>
-                    <li><a href="#">Installation</a></li>
-                    <li><a href="#">Design Principles</a></li>
+                    <li><a href="#introduction">Introduction</a></li>
+                    <li><a href="#installation">Installation</a></li>
+                    <li><a href="#principles">Design Principles</a></li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Foundation</h3>
                 <ul class="sidebar-menu">
-                    <li><a href="#" class="active">Colors</a></li>
-                    <li><a href="#">Typography</a></li>
-                    <li><a href="#">Spacing</a></li>
-                    <li><a href="#">Layout</a></li>
+                    <li><a href="#colors" class="active">Colors</a></li>
+                    <li><a href="#typography">Typography</a></li>
+                    <li><a href="#spacing">Spacing</a></li>
+                    <li><a href="#layout">Layout</a></li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Components</h3>
                 <ul class="sidebar-menu">
-                    <li><a href="#">Buttons</a></li>
-                    <li><a href="#">Cards</a></li>
-                    <li><a href="#">Tags</a></li>
-                    <li><a href="#">Forms</a></li>
-                    <li><a href="#">Navigation</a></li>
-                    <li><a href="#">Grids</a></li>
-                </ul>
+                    <li><a href="#buttons">Buttons</a></li>
+                    <li><a href="#cards">Cards</a></li>
+                    <li><a href="#tags">Tags</a></li>
+                    <li><a href="#forms">Forms</a></li>
+                    <li><a href="#navigation-header">Navigation Header</a></li> <li><a href="#social-links">Social Links</a></li> <li><a href="#grids">Grids</a></li> </ul>
             </div>
 
             <div class="sidebar-section">
                 <h3 class="sidebar-title">Resources</h3>
                 <ul class="sidebar-menu">
-                    <li><a href="#">Figma Library</a></li>
-                    <li><a href="#">Templates</a></li>
-                    <li><a href="#">Changelog</a></li>
+                    <li><a href="#figma">Figma Library</a></li>
+                    <li><a href="#templates">Templates</a></li>
+                    <li><a href="#changelog">Changelog</a></li>
                 </ul>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <main class="main-content">
-            <section class="component-header">
+            <section id="introduction" class="section-header">
+                 <div class="component-tag"><span>Getting Started</span></div> <h1 class="component-title">Kaizen Design System</h1> <p class="component-description">Este documento apresenta os componentes, padrões e diretrizes visuais que compõem o design system do site ofabio.com.br. O objetivo é garantir consistência visual e funcional em todas as páginas do site.</p> </section>
+
+             <section id="installation" class="section-header">
+                 <div class="component-tag"><span>Getting Started</span></div>
+                 <h1 class="component-title">Installation</h1>
+                 <p class="component-description">Como configurar e usar o Design System em seu projeto.</p>
+                 </section>
+
+            <section id="principles" class="section-header">
+                 <div class="component-tag"><span>Getting Started</span></div>
+                 <h1 class="component-title">Design Principles</h1>
+                 <p class="component-description">Os valores e diretrizes fundamentais que orientam o Design System.</p>
+                 </section>
+
+
+            <section id="colors" class="ds-section">
                 <div class="component-tag"><span>Foundation</span></div>
-                <h1 class="component-title">Colors</h1>
-                <p class="component-description">A paleta de cores foi projetada para transmitir minimalismo, elegância e sofisticação, mantendo um visual clean e contemporâneo.</p>
-            </section>
+                <h2>Colors</h2> <p class="mb-xl">A paleta de cores foi projetada para transmitir minimalismo, elegância e sofisticação.</p>
 
-            <section class="demo-area">
-                <div class="demo-tabs">
-                    <div class="demo-tab active">Preview</div>
-                    <div class="demo-tab">Code</div>
-                    <div class="demo-tab">Usage</div>
-                </div>
-
-                <div class="preview-area">
-                    <div class="preview-toolbar">
-                        <button>View fullscreen</button>
-                        <button>Copy</button>
-                    </div>
-                    
-                    <h3 class="mb-lg">Cores Principais</h3>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
-                        <div>
-                            <div style="width: 100px; height: 100px; background-color: #000000; border-radius: 8px;"></div>
-                            <div style="margin-top: 8px; font-weight: 500;">Primary</div>
-                            <code>#000000</code>
-                        </div>
-                        <div>
-                            <div style="width: 100px; height: 100px; background-color: #333333; border-radius: 8px;"></div>
-                            <div style="margin-top: 8px; font-weight: 500;">Secondary</div>
-                            <code>#333333</code>
-                        </div>
-                        <div>
-                            <div style="width: 100px; height: 100px; background-color: #000000; border-radius: 8px;"></div>
-                            <div style="margin-top: 8px; font-weight: 500;">Accent</div>
-                            <code>#000000</code>
-                        </div>
-                        <div>
-                            <div style="width: 100px; height: 100px; background-color: #E7E5DE; border-radius: 8px;"></div>
-                            <div style="margin-top: 8px; font-weight: 500;">Background</div>
-                            <code>#E7E5DE</code>
-                        </div>
+                <div class="demo-area">
+                     <div class="demo-tabs color-tabs"> <div class="demo-tab active" data-tab="color-preview">Preview</div>
+                        <div class="demo-tab" data-tab="color-code">Code</div>
+                        <div class="demo-tab" data-tab="color-usage">Usage</div>
                     </div>
 
-                    <h3 class="mb-lg">Cores de Interface</h3>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <div>
-                            <div style="width: 100px; height: 100px; background-color: #000000; border-radius: 8px;"></div>
-                            <div style="margin-top: 8px; font-weight: 500;">Text</div>
-                            <code>#000000</code>
+                    <div class="preview-area" id="color-preview-content">
+                         <div class="preview-toolbar">
+                            <button>View fullscreen</button>
+                            <button>Copy</button>
                         </div>
-                        <div>
-                            <div style="width: 100px; height: 100px; background-color: #333333; border-radius: 8px;"></div>
-                            <div style="margin-top: 8px; font-weight: 500;">Light Text</div>
-                            <code>#333333</code>
+
+                        <h3 class="mb-lg">Cores Principais</h3>
+                        <div class="flex gap-md flex-wrap mb-xl">
+                            <div>
+                                <div class="color-sample" style="background-color: var(--primary-color);">Primary</div>
+                                <code>#000000</code>
+                            </div>
+                            <div>
+                                <div class="color-sample" style="background-color: var(--secondary-color);">Secondary</div>
+                                <code>#333333</code>
+                            </div>
+                            <div>
+                                <div class="color-sample" style="background-color: var(--accent-color);">Accent</div>
+                                <code>#000000</code>
+                            </div>
+                            <div>
+                                <div class="color-sample" style="background-color: var(--background-color);">Background</div>
+                                <code>#E7E5DE</code>
+                            </div>
                         </div>
-                        <div>
-                            <div style="width: 100px; height: 100px; background-color: rgba(0,0,0,0.03); border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);"></div>
-                            <div style="margin-top: 8px; font-weight: 500;">Card BG</div>
-                            <code>rgba(0,0,0,0.03)</code>
-                        </div>
-                        <div>
-                            <div style="width: 100px; height: 100px; background-color: rgba(0,0,0,0.05); border-radius: 8px; border: 1px solid rgba(0,0,0,0.1);"></div>
-                            <div style="margin-top: 8px; font-weight: 500;">Card Hover</div>
-                            <code>rgba(0,0,0,0.05)</code>
+
+                        <h3 class="mb-lg">Cores de Interface</h3>
+                        <div class="flex gap-md flex-wrap">
+                            <div>
+                                <div class="color-sample" style="background-color: var(--text-color);">Text</div>
+                                <code>#000000</code>
+                            </div>
+                            <div>
+                                <div class="color-sample" style="background-color: var(--light-text);">Light Text</div>
+                                <code>#333333</code>
+                            </div>
+                            <div>
+                                <div class="color-sample" style="background-color: var(--card-bg);">Card BG</div>
+                                <code>rgba(0,0,0,0.03)</code>
+                            </div>
+                            <div>
+                                <div class="color-sample" style="background-color: var(--card-hover);">Card Hover</div>
+                                <code>rgba(0,0,0,0.05)</code>
+                            </div>
+                             <div>
+                                <div class="color-sample" style="background-color: var(--code-bg);">Code BG</div>
+                                <code>#F5F3EE</code>
+                            </div>
+                             <div>
+                                <div class="color-sample" style="background-color: var(--highlight-bg);">Highlight BG</div>
+                                <code>#FFFACC</code>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="code-area">
-/* Variáveis CSS */
+                    <div class="code-area" id="color-code-content">
+                        <pre><code class="language-css">/* Variáveis CSS para Cores */
 :root {
   --primary-color: #000000;
   --secondary-color: #333333;
@@ -569,166 +791,1315 @@
   --background-color: #E7E5DE;
   --text-color: #000000;
   --light-text: #333333;
+  --border-color: rgba(0, 0, 0, 0.1);
   --card-bg: rgba(0, 0, 0, 0.03);
   --card-hover: rgba(0, 0, 0, 0.05);
+  --code-bg: #F5F3EE;
+  --highlight-bg: #FFFACC;
 }
 
 /* Exemplo de uso */
-.elemento {
-  background-color: var(--primary-color);
-  color: var(--background-color);
+.primary-text {
+  color: var(--primary-color);
 }
 
-.elemento-secundario {
+.secondary-bg {
   background-color: var(--secondary-color);
-  color: white;
 }
 
 .card {
   background-color: var(--card-bg);
-  transition: background-color 0.3s ease;
+  border: 1px solid var(--border-color);
+}</code></pre>
+                    </div>
+
+                    <div class="controls-panel" id="color-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Diretrizes de Uso</h3>
+                         <p class="mb-lg">Use as cores de forma consistente para manter a identidade visual. As cores primárias e de destaque são para elementos de ação e atenção. As cores secundárias e de texto leve são para informações de apoio.</p>
+
+                          <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Acessibilidade</h3>
+                         <p>Nossa paleta foi desenvolvida com foco em acessibilidade, buscando contraste adequado entre texto e fundo. Verifique sempre a combinação de cores para garantir conformidade com WCAG 2.1 AA, especialmente para textos pequenos.</p>
+
+                    </div>
+                </div>
+
+                <h3 class="mb-lg">Tokens CSS</h3>
+                 <p class="mb-lg">Lista completa das variáveis CSS para cores:</p>
+                <div class="table-responsive">
+                    <table class="props-table">
+                        <thead>
+                            <tr>
+                                <th>Token</th>
+                                <th>Valor</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             <tr><td><code>--primary-color</code></td><td><code>#000000</code></td><td>Cor principal do sistema, usada em elementos de destaque e ações primárias</td></tr>
+                            <tr><td><code>--secondary-color</code></td><td><code>#333333</code></td><td>Cor secundária usada em elementos complementares</td></tr>
+                            <tr><td><code>--accent-color</code></td><td><code>#000000</code></td><td>Cor de destaque para chamar atenção para elementos específicos</td></tr>
+                            <tr><td><code>--background-color</code></td><td><code>#E7E5DE</code></td><td>Cor de fundo principal do site</td></tr>
+                            <tr><td><code>--text-color</code></td><td><code>#000000</code></td><td>Cor padrão para texto</td></tr>
+                            <tr><td><code>--light-text</code></td><td><code>#333333</code></td><td>Cor para texto secundário e com menor ênfase</td></tr>
+                             <tr><td><code>--border-color</code></td><td><code>rgba(0, 0, 0, 0.1)</code></td><td>Cor padrão para bordas e divisores</td></tr>
+                            <tr><td><code>--card-bg</code></td><td><code>rgba(0,0,0,0.03)</code></td><td>Cor de fundo para cards e containers leves</td></tr>
+                            <tr><td><code>--card-hover</code></td><td><code>rgba(0,0,0,0.05)</code></td><td>Cor de fundo para cards e containers leves no estado hover</td></tr>
+                             <tr><td><code>--code-bg</code></td><td><code>#F5F3EE</code></td><td>Cor de fundo para blocos de código e elementos de interface leves</td></tr>
+                            <tr><td><code>--highlight-bg</code></td><td><code>#FFFACC</code></td><td>Cor de fundo para elementos de destaque ou avisos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+             <section id="typography" class="ds-section">
+                 <div class="component-tag"><span>Foundation</span></div>
+                 <h2>Typography</h2> <p class="mb-xl">Utilizamos a fonte Epilogue para todo o site, combinando elegância com excelente legibilidade. A escala tipográfica é definida por tokens CSS.</p>
+
+                 <div class="demo-area">
+                     <div class="demo-tabs typography-tabs"> <div class="demo-tab active" data-tab="typography-preview">Preview</div>
+                         <div class="demo-tab" data-tab="typography-code">Code</div>
+                         <div class="demo-tab" data-tab="typography-usage">Usage</div>
+                     </div>
+
+                     <div class="preview-area" id="typography-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+
+                         <div class="type-scale-grid">
+                             <div class="text-sample">
+                                 <h1>Título H1 - Epilogue (var(--text-5xl))</h1>
+                                 <p>Usado para títulos principais e heróis de página.</p>
+                             </div>
+                             <div class="text-sample">
+                                 <h2>Título H2 - Epilogue (var(--text-2xl))</h2>
+                                 <p>Usado para títulos de seção.</p>
+                             </div>
+                             <div class="text-sample">
+                                 <h3>Título H3 - Epilogue (var(--text-lg))</h3>
+                                 <p>Usado para subtítulos e títulos de cards.</p>
+                             </div>
+                             <div class="text-sample">
+                                 <p style="font-size: var(--text-md);">Texto médio - Epilogue (var(--text-md)). Usado para textos em destaque e introduções de seção.</p>
+                             </div>
+                             <div class="text-sample">
+                                 <p>Texto padrão - Epilogue (var(--text-base)). Este é o texto padrão usado para a maior parte do conteúdo do site.</p>
+                             </div>
+                             <div class="text-sample">
+                                 <p style="font-size: var(--text-sm);">Texto pequeno - Epilogue (var(--text-sm)). Usado para informações secundárias, navegação e textos complementares.</p>
+                             </div>
+                             <div class="text-sample">
+                                  <p style="font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; color: var(--light-text);">Etiqueta/Timestamp (var(--text-xs))</p>
+                                  <p>Font-size var(--text-xs) pode ser usado para metadados ou etiquetas.</p>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="code-area" id="typography-code-content">
+                         <pre><code class="language-css">/* Variáveis CSS para Tipografia */
+:root {
+    --text-xs: 0.75rem;     /* 12px */
+    --text-sm: 0.9rem;      /* 14px */
+    --text-base: 1rem;      /* 16px */
+    --text-md: 1.1rem;      /* 18px */
+    --text-lg: 1.2rem;      /* 20px */
+    --text-xl: 1.5rem;      /* 24px */
+    --text-2xl: 2rem;       /* 32px */
+    --text-3xl: 2.5rem;     /* 40px */
+    --text-4xl: 3rem;       /* 48px */
+    --text-5xl: 4.5rem;     /* 72px */
+
+    /* Default Font */
+    font-family: 'Epilogue', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.3px;
+}
+
+/* Exemplo de uso com elementos HTML padrão */
+h1 { font-size: var(--text-5xl); line-height: 1.1; font-weight: 400; }
+h2 { font-size: var(--text-2xl); line-height: 1.1; font-weight: 400; }
+h3 { font-size: var(--text-lg); line-height: 1.1; font-weight: 400; }
+p { font-size: var(--text-base); line-height: 1.6; } /* Adjust p line-height based on body */
+
+/* Exemplo de uso com classes utilitárias (se existirem) */
+.text-heading-xl { font-size: var(--text-xl); }
+.text-small { font-size: var(--text-sm); }
+.font-bold { font-weight: 700; }
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="typography-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Hierarquia Tipográfica</h3>
+                         <p class="mb-lg">Use os tamanhos de fonte para criar uma hierarquia clara no conteúdo, guiando o olho do usuário. Use H1 para o título principal da página, H2 para títulos de seção, etc.</p>
+
+                         <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Combinações e Peso</h3>
+                         <p>Utilize o peso 400 (regular) para a maioria dos textos e 600 (semi-bold) ou 700 (bold) para elementos de destaque ou navegação, conforme definido nos estilos dos componentes (como links e títulos da sidebar).</p>
+                     </div>
+                 </div>
+
+                 <h3 class="mb-lg">Tokens de Tipografia</h3>
+                 <p class="mb-lg">Variáveis CSS para tamanhos de fonte:</p>
+                 <div class="table-responsive">
+                    <table class="props-table">
+                        <thead>
+                            <tr><th>Token</th><th>Valor (rem)</th><th>Valor (px base 16)</th><th>Uso Típico</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>--text-xs</code></td><td><code>0.75rem</code></td><td><code>12px</code></td><td>Etiquetas, metadados</td></tr>
+                            <tr><td><code>--text-sm</code></td><td><code>0.9rem</code></td><td><code>14px</code></td><td>Textos secundários, navegação</td></tr>
+                            <tr><td><code>--text-base</code></td><td><code>1rem</code></td><td><code>16px</code></td><td>Texto de corpo padrão</td></tr>
+                            <tr><td><code>--text-md</code></td><td><code>1.1rem</code></td><td><code>18px</code></td><td>Textos de apoio, descrições</td></tr>
+                            <tr><td><code>--text-lg</code></td><td><code>1.2rem</code></td><td><code>20px</code></td><td>Subtítulos (H3)</td></tr>
+                            <tr><td><code>--text-xl</code></td><td><code>1.5rem</code></td><td><code>24px</code></td><td>Títulos menores</td></tr>
+                            <tr><td><code>--text-2xl</code></td><td><code>2rem</code></td><td><code>32px</code></td><td>Títulos de seção (H2)</td></tr>
+                            <tr><td><code>--text-3xl</code></td><td><code>2.5rem</code></td><td><code>40px</code></td><td>Títulos grandes (H1 mobile)</td></tr>
+                             <tr><td><code>--text-4xl</code></td><td><code>3rem</code></td><td><code>48px</code></td><td>Títulos maiores (ex: H1 tablet)</td></tr>
+                            <tr><td><code>--text-5xl</code></td><td><code>4.5rem</code></td><td><code>72px</code></td><td>Título principal (H1 desktop)</td></tr>
+                        </tbody>
+                    </table>
+                 </div>
+            </section>
+
+             <section id="spacing" class="ds-section">
+                 <div class="component-tag"><span>Foundation</span></div>
+                 <h2>Spacing</h2> <p class="mb-xl">Nossa escala de espaçamento é baseada em tokens CSS para garantir consistência vertical e horizontal. Use esses tokens para margens, paddings e lacunas em grids/flexbox.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs spacing-tabs"> <div class="demo-tab active" data-tab="spacing-preview">Preview</div>
+                         <div class="demo-tab" data-tab="spacing-code">Code</div>
+                         <div class="demo-tab" data-tab="spacing-usage">Usage</div>
+                     </div>
+
+                     <div class="preview-area" id="spacing-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+                          <p>Exemplo visual da escala de espaçamento:</p>
+                          <div style="background-color: var(--code-bg); padding: var(--spacing-md); border-radius: var(--radius-sm);">
+                              <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                                   <div style="width: var(--spacing-xs); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-xs (4px)</span>
+                              </div>
+                              <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                                   <div style="width: var(--spacing-sm); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-sm (8px)</span>
+                              </div>
+                               <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                                   <div style="width: var(--spacing-md); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-md (16px)</span>
+                              </div>
+                               <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                                   <div style="width: var(--spacing-lg); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-lg (24px)</span>
+                              </div>
+                               <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                                   <div style="width: var(--spacing-xl); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-xl (32px)</span>
+                              </div>
+                               <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                                   <div style="width: var(--spacing-2xl); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-2xl (48px)</span>
+                              </div>
+                               <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                                   <div style="width: var(--spacing-3xl); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-3xl (64px)</span>
+                              </div>
+                               <div style="display: flex; align-items: center; margin-bottom: var(--spacing-sm);">
+                                   <div style="width: var(--spacing-4xl); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-4xl (96px)</span>
+                              </div>
+                               <div style="display: flex; align-items: center;">
+                                   <div style="width: var(--spacing-5xl); height: 20px; background-color: var(--primary-color);"></div><span style="margin-left: var(--spacing-sm); font-size: var(--text-sm);">--spacing-5xl (128px)</span>
+                              </div>
+                          </div>
+                     </div>
+
+                     <div class="code-area" id="spacing-code-content">
+                         <pre><code class="language-css">/* Variáveis CSS para Espaçamento */
+:root {
+    --spacing-xs: 0.25rem;  /* 4px */
+    --spacing-sm: 0.5rem;   /* 8px */
+    --spacing-md: 1rem;     /* 16px */
+    --spacing-lg: 1.5rem;   /* 24px */
+    --spacing-xl: 2rem;     /* 32px */
+    --spacing-2xl: 3rem;    /* 48px */
+    --spacing-3xl: 4rem;    /* 64px */
+    --spacing-4xl: 6rem;    /* 96px */
+    --spacing-5xl: 8rem;    /* 128px */
+}
+
+/* Exemplo de uso */
+.element {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  gap: var(--spacing-sm); /* For flex/grid */
+}
+
+/* Exemplo de classes utilitárias (se existirem) */
+.mb-md { margin-bottom: var(--spacing-md); }
+.py-lg { padding-top: var(--spacing-lg); padding-bottom: var(--spacing-lg); }
+.gap-sm { gap: var(--spacing-sm); }
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="spacing-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Uso Consistente</h3>
+                         <p>Aplique os tokens de espaçamento de forma consistente em todo o layout para criar ritmos verticais e horizontais previsíveis.</p>
+
+                         <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Em Componentes</h3>
+                         <p>Use tokens de espaçamento para definir o padding interno dos componentes e as margens entre elementos dentro deles.</p>
+
+                          <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Em Layouts</h3>
+                         <p>Utilize os tokens para definir as lacunas entre itens em layouts flexbox ou grid e para as margens externas dos componentes ou seções.</p>
+                     </div>
+                 </div>
+                  <h3 class="mb-lg">Tokens de Espaçamento</h3>
+                 <p class="mb-lg">Variáveis CSS para espaçamento:</p>
+                 <div class="table-responsive">
+                    <table class="props-table">
+                        <thead>
+                            <tr><th>Token</th><th>Valor (rem)</th><th>Valor (px base 16)</th><th>Uso Típico</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>--spacing-xs</code></td><td><code>0.25rem</code></td><td><code>4px</code></td><td>Espaçamento mínimo</td></tr>
+                            <tr><td><code>--spacing-sm</code></td><td><code>0.5rem</code></td><td><code>8px</code></td><td>Espaçamento pequeno</td></tr>
+                            <tr><td><code>--spacing-md</code></td><td><code>1rem</code></td><td><code>16px</code></td><td>Espaçamento médio (padrão)</td></tr>
+                            <tr><td><code>--spacing-lg</code></td><td><code>1.5rem</code></td><td><code>24px</code></td><td>Espaçamento grande</td></tr>
+                            <tr><td><code>--spacing-xl</code></td><td><code>2rem</code></td><td><code>32px</code></td><td>Espaçamento extra grande</td></tr>
+                            <tr><td><code>--spacing-2xl</code></td><td><code>3rem</code></td><td><code>48px</code></td><td>Espaçamento de seção menor, entre blocos grandes</td></tr>
+                            <tr><td><code>--spacing-3xl</code></td><td><code>4rem</code></td><td><code>64px</code></td><td>Espaçamento entre seções</td></tr>
+                             <tr><td><code>--spacing-4xl</code></td><td><code>6rem</code></td><td><code>96px</code></td><td>Espaçamento grande entre seções</td></tr>
+                            <tr><td><code>--spacing-5xl</code></td><td><code>8rem</code></td><td><code>128px</code></td><td>Espaçamento máximo, em heróis ou entre blocos muito distintos</td></tr>
+                        </tbody>
+                    </table>
+                 </div>
+             </section>
+
+             <section id="layout" class="ds-section">
+                  <div class="component-tag"><span>Foundation</span></div>
+                 <h2>Layout</h2> <p class="mb-xl">Diretrizes e padrões para a estrutura e organização do conteúdo nas páginas, incluindo contêineres e seções.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs layout-tabs"> <div class="demo-tab active" data-tab="layout-preview">Preview</div>
+                         <div class="demo-tab" data-tab="layout-code">Code</div>
+                         <div class="demo-tab" data-tab="layout-usage">Usage</div>
+                     </div>
+
+                     <div class="preview-area" id="layout-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+                          <h3 class="mb-lg">Contêiner Principal (`.container`)</h3>
+                          <div style="border: 2px dashed var(--primary-color); padding: var(--spacing-md); text-align: center; background-color: var(--background-color);">
+                                Conteúdo dentro do contêiner (max-width: var(--max-width), padding: var(--spacing-xl))
+                          </div>
+                          <p class="mt-md" style="font-size: var(--text-sm); color: var(--light-text); text-align: center;">Simulação do .container</p>
+
+                           <h3 class="mb-lg" style="margin-top: var(--spacing-2xl);">Seção de Conteúdo (`.section`)</h3>
+                           <div style="border: 2px dashed var(--secondary-color); padding: var(--spacing-4xl) 0; text-align: center; background-color: var(--background-color);">
+                                Conteúdo dentro da seção (padding vertical: var(--spacing-4xl))
+                           </div>
+                            <p class="mt-md" style="font-size: var(--text-sm); color: var(--light-text); text-align: center;">Simulação do .section</p>
+                     </div>
+
+                     <div class="code-area" id="layout-code-content">
+                         <pre><code class="language-html">&lt;!-- Estrutura básica de layout --&gt;
+&lt;body&gt;
+    &lt;header class="header"&gt;...&lt;/header&gt;
+    &lt;aside class="sidebar"&gt;...&lt;/aside&gt;
+    &lt;main class="main-content"&gt;
+        &lt;section id="alguma-secao" class="ds-section"&gt;
+            &lt;h2&gt;Título da Seção&lt;/h2&gt;
+            &lt;!-- Conteúdo da seção --&gt;
+        &lt;/section&gt;
+
+        &lt;!-- Ou para seções principais como a introdução --&gt;
+        &lt;section id="introduction" class="section-header"&gt;
+             &lt;h1&gt;Título Principal&lt;/h1&gt;
+             &lt;p&gt;Descrição...&lt;/p&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;...&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+                         <pre><code class="language-css">/* Contêiner principal */
+.app-container {
+    display: flex; /* Habilita layout flex para sidebar/main */
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Área de conteúdo principal */
+.main-content {
+    margin-left: var(--sidebar-width); /* Espaço para a sidebar */
+    margin-top: var(--header-height); /* Espaço para o header fixo */
+    width: calc(100% - var(--sidebar-width)); /* Ocupa o restante */
+    padding: var(--spacing-2xl); /* Espaçamento interno */
+    background-color: var(--content-bg);
+}
+
+/* Seções de documentação */
+.ds-section {
+    padding: var(--spacing-xl); /* Padding interno */
+    margin-bottom: var(--spacing-2xl); /* Espaço entre seções */
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--content-bg);
+}
+
+/* Seção de cabeçalho (primeira seção) */
+.section-header {
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+   .main-content {
+       margin-left: 0; /* Sidebar oculta */
+       width: 100%;
+       padding: var(--spacing-lg); /* Menor padding */
+   }
+   /* Sidebar é posicionada fixed e slide-in */
+}
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="layout-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Estrutura Base</h3>
+                          <p>Use a estrutura `.app-container` > `header`, `aside`, `main` para o layout principal. O conteúdo das páginas deve ficar dentro da tag `<main class="main-content">`.</p>
+
+                           <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Contêiner de Conteúdo</h3>
+                          <p>Utilize a classe `.container` para centralizar e limitar a largura do conteúdo principal em páginas que não são a de documentação, garantindo espaçamento lateral em todas as telas.</p>
+
+                           <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Organização de Seções</h3>
+                          <p>Divida o conteúdo da página em seções semânticas usando a tag `<section>`. Para seções de documentação, use a classe `.ds-section` para aplicar o estilo visual de bloco.</p>
+                     </div>
+                 </div>
+             </section>
+
+
+            <section id="buttons" class="ds-section">
+                 <div class="component-tag"><span>Component</span> <span class="status-tag status-stable">Stable</span></div>
+                <h2>Buttons</h2> <p class="mb-xl">Os botões são elementos interativos essenciais para a navegação e ações do usuário. Utilize as classes `.btn` combinadas com modificadores para tipos e tamanhos.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs buttons-tabs"> <div class="demo-tab active" data-tab="buttons-preview">Preview</div>
+                         <div class="demo-tab" data-tab="buttons-code">Code</div>
+                         <div class="demo-tab" data-tab="buttons-usage">Usage</div>
+                         <div class="demo-tab" data-tab="buttons-props">Props</div>
+                     </div>
+
+                     <div class="preview-area" id="buttons-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+
+                         <h3 class="mb-lg">Tipos de Botão</h3>
+                         <div class="flex gap-md flex-wrap mb-xl">
+                             <a href="#" class="btn btn-primary">Botão Primário</a>
+                             <a href="#" class="btn btn-outline">Botão Outline</a>
+                             </div>
+
+                         <h3 class="mb-lg">Tamanhos de Botão</h3>
+                         <div class="flex gap-md flex-wrap" style="align-items: center;">
+                             <a href="#" class="btn btn-primary btn-sm">Botão Pequeno</a>
+                             <a href="#" class="btn btn-primary">Botão Médio</a>
+                             <a href="#" class="btn btn-primary btn-lg">Botão Grande</a>
+                         </div>
+                          </div>
+
+                     <div class="code-area" id="buttons-code-content">
+                         <pre><code class="language-html">&lt;!-- Botão Primário --&gt;
+&lt;a href="#" class="btn btn-primary"&gt;Botão Primário&lt;/a&gt;
+&lt;button class="btn btn-primary"&gt;Botão Primário&lt;/button&gt; &lt;!-- Use &lt;button&gt; para ações --&gt;
+
+&lt;!-- Botão Outline --&gt;
+&lt;a href="#" class="btn btn-outline"&gt;Botão Outline&lt;/a&gt;
+&lt;button class="btn btn-outline"&gt;Botão Outline&lt;/button&gt;
+
+&lt;!-- Botão Pequeno --&gt;
+&lt;button class="btn btn-primary btn-sm"&gt;Pequeno&lt;/button&gt;
+
+&lt;!-- Botão Grande --&gt;
+&lt;button class="btn btn-primary btn-lg"&gt;Grande&lt;/button&gt;
+</code></pre>
+                         <pre><code class="language-css">/* Estilos Base para Botões */
+.btn {
+    display: inline-block;
+    padding: var(--spacing-md) var(--spacing-xl); /* Padrão */
+    border-radius: var(--radius-full);
+    font-weight: 400;
+    font-size: var(--text-base);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    border: none;
+    font-family: 'Epilogue', sans-serif;
+    text-align: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Tipos */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+.btn-primary:hover {
+    background-color: var(--secondary-color); /* Exemplo de hover */
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+}
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Tamanhos */
+.btn-sm {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--text-xs);
+}
+.btn-lg {
+    padding: var(--spacing-md) var(--spacing-2xl);
+    font-size: var(--text-md);
+}
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="buttons-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Quando Usar</h3>
+                          <p>Use botões para ações primárias (ex: enviar formulário), secundárias (ex: cancelar) ou navegação importante.</p>
+
+                           <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">HTML Semântico</h3>
+                          <p>Use a tag `<button>` para ações interativas (clicar para fazer algo) e a tag `<a>` para navegação (ir para outra página/seção), aplicando sempre as classes `.btn` e modificadores.</p>
+                     </div>
+
+                      <div class="table-responsive" id="buttons-props-content">
+                         <h3 class="mb-lg">Classes CSS</h3>
+                           <p class="mb-lg">Classes disponíveis para estilizar botões:</p>
+                           <table class="props-table">
+                               <thead>
+                                   <tr><th>Classe</th><th>Descrição</th></tr>
+                               </thead>
+                               <tbody>
+                                   <tr><td><code>.btn</code></td><td>Classe base para estilização de botões.</td></tr>
+                                   <tr><td><code>.btn-primary</code></td><td>Aplica o estilo de botão primário.</td></tr>
+                                   <tr><td><code>.btn-outline</code></td><td>Aplica o estilo de botão outline.</td></tr>
+                                   <tr><td><code>.btn-sm</code></td><td>Define o tamanho pequeno do botão.</td></tr>
+                                   <tr><td><code>.btn-lg</code></td><td>Define o tamanho grande do botão.</td></tr>
+                                   </tbody>
+                           </table>
+                     </div>
+                 </div>
+            </section>
+
+             <section id="cards" class="ds-section">
+                <div class="component-tag"><span>Component</span> <span class="status-tag status-stable">Stable</span></div>
+                <h2>Cards</h2> <p class="mb-xl">Cards são containers versáteis para agrupar e exibir conteúdo relacionado de forma organizada e visualmente distinta.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs cards-tabs"> <div class="demo-tab active" data-tab="cards-preview">Preview</div>
+                         <div class="demo-tab" data-tab="cards-code">Code</div>
+                         <div class="demo-tab" data-tab="cards-usage">Usage</div>
+                         <div class="demo-tab" data-tab="cards-props">Props</div>
+                     </div>
+
+                     <div class="preview-area" id="cards-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+                         <p class="mb-lg">Exemplos de uso da classe `.card` em um grid:</p>
+                         <div class="grid grid-3"> <div class="card">
+                                <h3>Serviço</h3>
+                                <p>Este é um exemplo de card de serviço. Os cards são usados para apresentar informações de forma clara e concisa.</p>
+                            </div>
+                            <div class="card">
+                                <h3>Local</h3>
+                                <p>Este é um exemplo de card de local. Os cards locais mostram endereços e informações de contato.</p>
+                            </div>
+                            <div class="card">
+                                <h3>Blog</h3>
+                                <p>Este é um exemplo de card de blog. Os cards de blog geralmente incluem uma imagem, título e uma breve descrição.</p>
+                            </div>
+                         </div>
+                          </div>
+
+                     <div class="code-area" id="cards-code-content">
+                         <pre><code class="language-html">&lt;!-- Exemplo básico de Card --&gt;
+&lt;div class="card"&gt;
+    &lt;h3&gt;Título do Card&lt;/h3&gt;
+    &lt;p&gt;Conteúdo do card.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Exemplo de Cards em um Grid (usando classes de Grid) --&gt;
+&lt;div class="grid grid-2"&gt;
+    &lt;div class="card"&gt;Card 1&lt;/div&gt;
+    &lt;div class="card"&gt;Card 2&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                          <pre><code class="language-css">/* Estilo Base para Cards */
+.card {
+    background: var(--card-bg); /* Fundo leve */
+    padding: var(--spacing-xl); /* Espaçamento interno */
+    border-radius: var(--radius-md); /* Bordas arredondadas */
+    transition: all 0.3s ease; /* Transição no hover */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Borda sutil */
 }
 
 .card:hover {
-  background-color: var(--card-hover);
+    background: var(--card-hover); /* Fundo no hover */
+    transform: translateY(-5px); /* Efeito de "subir" */
 }
-                </div>
+
+/* Estilos de Grid usados nos exemplos */
+.grid {
+    display: grid;
+    gap: var(--spacing-xl); /* Espaço entre itens do grid */
+}
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+/* ... outros tamanhos de grid ... */
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="cards-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Quando Usar</h3>
+                          <p>Use cards para agrupar informações relacionadas, como serviços, artigos de blog, produtos, membros de equipe, etc. São ideais para layouts baseados em grid.</p>
+
+                           <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Estrutura</h3>
+                           <p>A classe `.card` define o contêiner visual. O conteúdo interno (títulos, parágrafos, imagens, botões) deve seguir as diretrizes tipográficas e de espaçamento do Design System.</p>
+                     </div>
+
+                      <div class="table-responsive" id="cards-props-content">
+                         <h3 class="mb-lg">Classes CSS</h3>
+                           <p class="mb-lg">Classe base disponível para estilizar cards:</p>
+                           <table class="props-table">
+                               <thead>
+                                   <tr><th>Classe</th><th>Descrição</th></tr>
+                               </thead>
+                               <tbody>
+                                   <tr><td><code>.card</code></td><td>Aplica o estilo visual padrão de card (fundo, padding, borda, sombra sutil no hover).</td></tr>
+                                   </tbody>
+                           </table>
+                     </div>
+                 </div>
             </section>
 
-            <section>
-                <h2 style="font-size: var(--text-xl); margin-bottom: var(--spacing-lg);">Tokens CSS</h2>
-                <p class="mb-lg">Nossa paleta de cores é implementada através de variáveis CSS personalizadas (Custom Properties) para fácil utilização em todo o sistema.</p>
-                
-                <table class="props-table">
-                    <thead>
-                        <tr>
-                            <th>Token</th>
-                            <th>Valor</th>
-                            <th>Descrição</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>--primary-color</code></td>
-                            <td><code>#000000</code></td>
-                            <td>Cor principal do sistema, usada em elementos de destaque e ações primárias</td>
-                        </tr>
-                        <tr>
-                            <td><code>--secondary-color</code></td>
-                            <td><code>#333333</code></td>
-                            <td>Cor secundária usada em elementos complementares</td>
-                        </tr>
-                        <tr>
-                            <td><code>--accent-color</code></td>
-                            <td><code>#000000</code></td>
-                            <td>Cor de destaque para chamar atenção para elementos específicos</td>
-                        </tr>
-                        <tr>
-                            <td><code>--background-color</code></td>
-                            <td><code>#E7E5DE</code></td>
-                            <td>Cor de fundo principal do site</td>
-                        </tr>
-                        <tr>
-                            <td><code>--text-color</code></td>
-                            <td><code>#000000</code></td>
-                            <td>Cor padrão para texto</td>
-                        </tr>
-                        <tr>
-                            <td><code>--light-text</code></td>
-                            <td><code>#333333</code></td>
-                            <td>Cor para texto secundário e com menor ênfase</td>
-                        </tr>
-                        <tr>
-                            <td><code>--card-bg</code></td>
-                            <td><code>rgba(0,0,0,0.03)</code></td>
-                            <td>Cor de fundo para cards e containers</td>
-                        </tr>
-                        <tr>
-                            <td><code>--card-hover</code></td>
-                            <td><code>rgba(0,0,0,0.05)</code></td>
-                            <td>Cor de fundo para cards e containers no estado hover</td>
-                        </tr>
-                    </tbody>
-                </table>
+
+            <section id="tags" class="ds-section">
+                <div class="component-tag"><span>Component</span> <span class="status-tag status-stable">Stable</span></div>
+                <h2>Tags</h2> <p class="mb-xl">Tags são pequenos elementos visuais usados para categorizar, destacar ou rotular informações de forma concisa.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs tags-tabs"> <div class="demo-tab active" data-tab="tags-preview">Preview</div>
+                         <div class="demo-tab" data-tab="tags-code">Code</div>
+                         <div class="demo-tab" data-tab="tags-usage">Usage</div>
+                         <div class="demo-tab" data-tab="tags-props">Props</div>
+                     </div>
+
+                     <div class="preview-area" id="tags-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+                          <p class="mb-lg">Exemplos de Tags:</p>
+                          <div class="flex gap-md flex-wrap">
+                             <div class="tag"><span>Status</span> <span>Ativo</span></div>
+                             <div class="tag"><span>Versão</span> <span>1.0.0</span></div>
+                             <div class="tag"><span>Categoria</span> <span>Design</span></div>
+                              </div>
+                     </div>
+
+                     <div class="code-area" id="tags-code-content">
+                         <pre><code class="language-html">&lt;!-- Exemplo básico de Tag --&gt;
+&lt;div class="tag"&gt;
+    &lt;span&gt;Rótulo&lt;/span&gt;
+    &lt;span&gt;Valor&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- Tag simples (apenas um span) --&gt;
+&lt;div class="tag"&gt;
+    &lt;span&gt;Design&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+                          <pre><code class="language-css">/* Estilo para Tags */
+.tag {
+    display: inline-flex;
+    gap: 0.5rem; /* Espaço entre os spans */
+    align-items: center;
+    background: rgba(0, 0, 0, 0.1); /* Fundo leve */
+    padding: var(--spacing-sm) var(--spacing-md); /* Espaçamento interno */
+    border-radius: var(--radius-full); /* Bordas arredondadas */
+    font-size: var(--text-sm); /* Tamanho da fonte */
+}
+
+.tag span:first-child {
+    font-weight: 500; /* Peso opcional para o primeiro span */
+}
+
+/* TODO: Add modifiers for colors, interactive tags, etc. */
+/*
+.tag-primary { background-color: var(--primary-color); color: white; }
+*/
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="tags-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Quando Usar</h3>
+                         <p>Use tags para metadados, status, categorias, filtros ou qualquer informação curta que precise ser visualmente destacada.</p>
+
+                          <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Estrutura</h3>
+                          <p>A tag base é um `div` com a classe `.tag`. O conteúdo interno pode ser dividido em `span`s para separar rótulo e valor, se necessário.</p>
+                     </div>
+
+                      <div class="table-responsive" id="tags-props-content">
+                         <h3 class="mb-lg">Classes CSS</h3>
+                          <p class="mb-lg">Classe base disponível para estilizar tags:</p>
+                          <table class="props-table">
+                              <thead>
+                                  <tr><th>Classe</th><th>Descrição</th></tr>
+                              </thead>
+                              <tbody>
+                                  <tr><td><code>.tag</code></td><td>Aplica o estilo visual padrão de tag.</td></tr>
+                                  </tbody>
+                          </table>
+                     </div>
+                 </div>
             </section>
 
-            <section style="margin-top: var(--spacing-2xl);">
-                <h2 style="font-size: var(--text-xl); margin-bottom: var(--spacing-lg);">Diretrizes de Uso</h2>
-                <div class="controls-panel">
-                    <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Acessibilidade</h3>
-                    <p class="mb-lg">Nossa paleta de cores foi testada para garantir conformidade com os padrões WCAG 2.1 AA. Certifique-se de manter contraste suficiente ao combinar cores de texto e fundo.</p>
-                    
-                    <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Hierarquia Visual</h3>
-                    <p>Use as cores para estabelecer hierarquia visual:</p>
-                    <ul style="margin-left: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
-                        <li>Use <code>--primary-color</code> para elementos de ação principal e navegação</li>
-                        <li>Use <code>--secondary-color</code> para elementos secundários</li>
-                        <li>Use <code>--light-text</code> para textos de apoio e menos importantes</li>
-                    </ul>
-                </div>
+
+            <section id="forms" class="ds-section">
+                <div class="component-tag"><span>Component</span> <span class="status-tag status-beta">Beta</span></div>
+                <h2>Forms</h2> <p class="mb-xl">Componentes de formulário para coletar informações do usuário de forma acessível e consistente.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs forms-tabs"> <div class="demo-tab active" data-tab="forms-preview">Preview</div>
+                         <div class="demo-tab" data-tab="forms-code">Code</div>
+                         <div class="demo-tab" data-tab="forms-usage">Usage</div>
+                         <div class="demo-tab" data-tab="forms-props">Props</div>
+                     </div>
+
+                     <div class="preview-area" id="forms-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+                          <p class="mb-lg">Exemplo de formulário básico:</p>
+                          <form style="max-width: 500px; margin: 0 auto;"> <div style="margin-bottom: var(--spacing-lg);">
+                                 <label for="form-name" style="display: block; margin-bottom: var(--spacing-xs); font-weight: 500;">Nome completo</label>
+                                 <input type="text" id="form-name" style="width: 100%; padding: var(--spacing-sm) var(--spacing-md); border: 1px solid rgba(0,0,0,0.2); border-radius: var(--radius-sm); font-family: 'Epilogue', sans-serif; font-size: var(--text-base); outline: none;" placeholder="Digite seu nome">
+                             </div>
+
+                             <div style="margin-bottom: var(--spacing-lg);">
+                                 <label for="form-email" style="display: block; margin-bottom: var(--spacing-xs); font-weight: 500;">Email</label>
+                                 <input type="email" id="form-email" style="width: 100%; padding: var(--spacing-sm) var(--spacing-md); border: 1px solid rgba(0,0,0,0.2); border-radius: var(--radius-sm); font-family: 'Epilogue', sans-serif; font-size: var(--text-base); outline: none;" placeholder="seu@email.com">
+                             </div>
+
+                             <div style="margin-bottom: var(--spacing-lg);">
+                                 <label for="form-message" style="display: block; margin-bottom: var(--spacing-xs); font-weight: 500;">Mensagem</label>
+                                 <textarea id="form-message" style="width: 100%; padding: var(--spacing-sm) var(--spacing-md); border: 1px solid rgba(0,0,0,0.2); border-radius: var(--radius-sm); font-family: 'Epilogue', sans-serif; font-size: var(--text-base); min-height: 150px; resize: vertical; outline: none;" placeholder="Digite sua mensagem"></textarea>
+                             </div>
+
+                             <button type="submit" class="btn btn-primary">Enviar</button>
+                         </form>
+                          </div>
+
+                     <div class="code-area" id="forms-code-content">
+                         <pre><code class="language-html">&lt;form&gt;
+    &lt;div class="form-group"&gt; &lt;!-- Use uma classe para agrupar --&gt;
+        &lt;label for="input-id"&gt;Campo:&lt;/label&gt;
+        &lt;input type="text" id="input-id" placeholder="..."&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="textarea-id"&gt;Mensagem:&lt;/label&gt;
+        &lt;textarea id="textarea-id" placeholder="..."&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;button type="submit" class="btn btn-primary"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+                         <pre><code class="language-css">/* Estilos básicos para campos de formulário */
+.form-group {
+    margin-bottom: var(--spacing-lg); /* Espaço entre grupos */
+}
+
+label {
+    display: block; /* Ocupa a linha toda */
+    margin-bottom: var(--spacing-xs); /* Espaço entre label e input */
+    font-weight: 500;
+    font-size: var(--text-sm); /* Tamanho da fonte da label */
+    color: var(--text-color);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"], /* Add other input types */
+textarea {
+    width: 100%; /* Ocupa a largura total do contêiner */
+    padding: var(--spacing-sm) var(--spacing-md); /* Espaçamento interno */
+    border: 1px solid var(--border-color); /* Borda */
+    border-radius: var(--radius-sm); /* Bordas arredondadas */
+    font-family: 'Epilogue', sans-serif; /* Garante a fonte */
+    font-size: var(--text-base); /* Tamanho da fonte */
+    color: var(--text-color);
+    background-color: var(--content-bg); /* Fundo */
+    outline: none; /* Remove outline padrão */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary-color); /* Borda primária no focus */
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1); /* Sombra sutil no focus */
+}
+
+textarea {
+    min-height: 120px; /* Altura mínima para textarea */
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+/* TODO: Add styles for checkboxes, radios, selects, validation states (error, success) */
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="forms-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Acessibilidade</h3>
+                          <p class="mb-lg">Sempre associe `<label>`s aos seus respectivos campos de input usando o atributo `for` e o `id` do campo. Forneça texto alternativo para ícones (se usados).</p>
+
+                          <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Validação</h3>
+                          <p>Indique estados de validação (erro, sucesso) usando classes CSS específicas (a serem definidas e documentadas).</p>
+                     </div>
+
+                      <div class="table-responsive" id="forms-props-content">
+                         <h3 class="mb-lg">Classes CSS</h3>
+                          <p class="mb-lg">Classes e estilos para elementos de formulário:</p>
+                          <table class="props-table">
+                              <thead>
+                                  <tr><th>Elemento/Classe</th><th>Descrição</th></tr>
+                              </thead>
+                              <tbody>
+                                  <tr><td><code>.form-group</code></td><td>Contêiner para agrupar label e input/textarea.</td></tr>
+                                  <tr><td><code>label</code></td><td>Estilo para as etiquetas dos campos.</td></tr>
+                                   <tr><td><code>input[type="..."], textarea</code></td><td>Estilo base para campos de texto e áreas de texto.</td></tr>
+                                  </tbody>
+                          </table>
+                     </div>
+                 </div>
             </section>
 
-            <section class="component-grid" style="margin-top: var(--spacing-2xl);">
-                <h2 style="font-size: var(--text-xl); margin-bottom: var(--spacing-lg); grid-column: 1/-1;">Componentes relacionados</h2>
-                
-                <div class="component-item">
-                    <div style="width: 40px; height: 40px; background-color: #000; border-radius: 8px; margin: 0 auto;"></div>
-                    <div class="component-item-title">Botões</div>
-                </div>
-                
-                <div class="component-item">
-                    <div style="width: 40px; height: 40px; background-color: #E7E5DE; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); margin: 0 auto;"></div>
-                    <div class="component-item-title">Cards</div>
-                </div>
-                
-                <div class="component-item">
-                    <div style="width: 40px; height: 20px; background-color: rgba(0,0,0,0.05); border-radius: 100px; margin: 10px auto;"></div>
-                    <div class="component-item-title">Tags</div>
-                </div>
-                
-                <div class="component-item">
-                    <div style="width: 40px; height: 6px; background-color: #000; border-radius: 3px; margin: 17px auto;"></div>
-                    <div class="component-item-title">Divisores</div>
-                </div>
-            </section>
+
+             <section id="navigation-header" class="ds-section">
+                <div class="component-tag"><span>Component</span> <span class="status-tag status-stable">Stable</span></div>
+                <h2>Navigation Header</h2> <p class="mb-xl">O cabeçalho de navegação principal do site, contendo o logo, links de navegação e botão de contato.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs header-tabs"> <div class="demo-tab active" data-tab="header-preview">Preview</div>
+                         <div class="demo-tab" data-tab="header-code">Code</div>
+                         <div class="demo-tab" data-tab="header-usage">Usage</div>
+                         </div>
+
+                     <div class="preview-area" id="header-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+                          <p class="mb-lg">Exemplo de Header (desktop):</p>
+                          <div class="card mb-xl" style="background: #fff; border: 1px solid rgba(0,0,0,0.1);"> <div style="display: flex; justify-content: space-between; align-items: center; padding: var(--spacing-md) var(--spacing-lg);">
+                                 <a href="#" class="logo" style="margin: 0;"><img src="https://global.divhunt.com/3e41e8f57ebbed882520a4fd1dc34dc0_1610.svg" alt="Logo Demo" style="width: 30px;"></a>
+                                 <ul style="display: flex; list-style: none; gap: 1rem; align-items: center;"> <li><a href="#" class="nav-link">Link 1</a></li>
+                                     <li><a href="#" class="nav-link">Link 2</a></li>
+                                     <li><a href="#" class="nav-link">Link 3</a></li>
+                                     <li><a href="#" class="btn btn-primary btn-sm">Action</a></li> </ul>
+                                  </div>
+                         </div>
+                         <p class="mb-lg">Comportamento mobile (menu toggle):</p>
+                          <p style="font-size: var(--text-sm); color: var(--light-text);">Em telas menores que 768px, o menu de navegação principal (`.nav-list`) é oculto e um ícone de "hambúrguer" (`.menu-toggle`) aparece no header. Clicar no ícone revela o menu mobile.</p>
+                          </div>
+
+                     <div class="code-area" id="header-code-content">
+                         <pre><code class="language-html">&lt;!-- Header no HTML --&gt;
+&lt;header class="header"&gt;
+    &lt;div class="nav"&gt;
+        &lt;a href="#" class="logo"&gt;&lt;img src="..." alt="Logo"&gt;&lt;/a&gt;
+        &lt;div class="menu-toggle"&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;/div&gt; &lt;!-- Ícone mobile --&gt;
+        &lt;ul class="nav-list"&gt;
+            &lt;li&gt;&lt;a href="#secao" class="nav-link"&gt;Link&lt;/a&gt;&lt;/li&gt;
+            &lt;!-- outros links --&gt;
+            &lt;li&gt;&lt;a href="#" class="btn btn-primary"&gt;Botão&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/header&gt;
+</code></pre>
+                         <pre><code class="language-css">/* Estilos do Header */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: var(--spacing-xl);
+    backdrop-filter: blur(10px);
+    background-color: rgba(231, 229, 222, 0.8);
+    border-bottom: 1px solid var(--border-color);
+    height: var(--header-height);
+    display: flex;
+    align-items: center; /* Centra conteúdo verticalmente */
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-width); /* Opcional, se quiser centralizar */
+    width: 100%; /* Ocupa a largura total */
+    margin: 0 auto; /* Centraliza se max-width for menor que 100% */
+}
+
+.logo img { height: 30px; }
+
+.nav-list {
+    display: flex; /* Desktop: flex horizontal */
+    list-style: none;
+    gap: var(--spacing-xl);
+    align-items: center;
+}
+
+.nav-link {
+    /* Estilos de link já definidos globalmente ou em .nav-link */
+}
+
+.menu-toggle {
+    display: none; /* Oculto no desktop */
+    /* Estilos mobile definidos em @media */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .header {
+        padding: var(--spacing-md);
+        background-color: var(--background-color); /* Fundo sólido */
+        backdrop-filter: none;
+    }
+     .nav { flex-wrap: wrap; justify-content: flex-start; } /* Ajuste para mobile */
+     .logo { margin-right: auto; } /* Empurra toggle e menu para a direita */
+
+    .menu-toggle {
+        display: block; /* Mostra no mobile */
+    }
+
+    .nav-list {
+        display: none; /* Oculta no mobile por padrão */
+        position: absolute; /* Posiciona o menu mobile */
+        top: var(--header-height);
+        right: var(--spacing-md);
+        /* ... outros estilos de menu mobile ... */
+        flex-direction: column; /* Stack verticalmente */
+        gap: var(--spacing-sm); /* Espaço entre itens */
+    }
+     .nav-list.active { display: flex; } /* Mostra quando ativo */
+}
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="header-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Uso</h3>
+                          <p>Inclua o código do header no topo do `<body>` de cada página. A responsividade e o toggle mobile são controlados por CSS e JavaScript.</p>
+
+                          <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Adaptação</h3>
+                          <p>Substitua o logo placeholder, os links de navegação e o link do botão de contato conforme a estrutura de navegação do seu site.</p>
+                     </div>
+                 </div>
+             </section>
+
+             <section id="social-links" class="ds-section">
+                <div class="component-tag"><span>Component</span> <span class="status-tag status-stable">Stable</span></div>
+                <h2>Social Links</h2> <p class="mb-xl">Links estilizados para plataformas de mídia social, geralmente usados no footer ou em seções de contato.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs social-links-tabs"> <div class="demo-tab active" data-tab="social-links-preview">Preview</div>
+                         <div class="demo-tab" data-tab="social-links-code">Code</div>
+                         <div class="demo-tab" data-tab="social-links-usage">Usage</div>
+                         </div>
+
+                     <div class="preview-area" id="social-links-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+                         <p class="mb-lg">Exemplo de links sociais:</p>
+                         <div class="flex gap-md flex-wrap" style="justify-content: center;"> <a href="https://www.twitter.com/ofabio" class="social-link" aria-label="Twitter">
+                                 <i class="fab fa-twitter"></i>
+                             </a>
+                             <a href="https://www.instagram.com/ofabio" class="social-link" aria-label="Instagram">
+                                 <i class="fab fa-instagram"></i>
+                             </a>
+                             <a href="https://www.linkedin.com/in/ofabio" class="social-link" aria-label="LinkedIn">
+                                 <i class="fab fa-linkedin-in"></i>
+                             </a>
+                             </div>
+                     </div>
+
+                     <div class="code-area" id="social-links-code-content">
+                         <pre><code class="language-html">&lt;!-- Grupo de links sociais --&gt;
+&lt;div class="social-links"&gt;
+    &lt;a href="LINK_TWITTER" class="social-link" aria-label="Twitter"&gt;
+        &lt;i class="fab fa-twitter"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;a href="LINK_INSTAGRAM" class="social-link" aria-label="Instagram"&gt;
+        &lt;i class="fab fa-instagram"&gt;&lt;/i&gt;
+    &lt;/a&gt;
+    &lt;!-- ... outros links --&gt;
+&lt;/div&gt;
+</code></pre>
+                         <pre><code class="language-css">/* Estilo para Links Sociais */
+.social-links {
+    display: flex; /* Layout flex */
+    gap: var(--spacing-md); /* Espaço entre links */
+    /* Exemplo de centralização */
+    justify-content: center;
+    margin: var(--spacing-xl) 0; /* Margem vertical */
+}
+
+.social-link {
+    background-color: var(--primary-color); /* Fundo */
+    border-radius: 50%; /* Circular */
+    padding: 10px; /* Espaçamento interno */
+    width: 40px; /* Tamanho fixo */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    color: white; /* Cor do ícone */
+    text-decoration: none; /* Remove underline */
+}
+
+.social-link:hover {
+    transform: translateY(-2px); /* Efeito de hover */
+    opacity: 0.7;
+}
+
+.social-link::after { display: none; } /* Remove underline effect */
+
+.social-link i { color: inherit; } /* Ícone herda a cor branca */
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="social-links-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Uso</h3>
+                          <p>Use o contêiner `.social-links` para agrupar os ícones sociais. Cada link individual deve ter a classe `.social-link` e conter um ícone (ex: Font Awesome) e um `aria-label` para acessibilidade.</p>
+
+                          <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Adicionando Ícones</h3>
+                          <p>Certifique-se de ter a biblioteca de ícones (como Font Awesome) incluída no seu projeto. Adicione a tag `<i>` com a classe apropriada dentro do link `.social-link`.</p>
+                     </div>
+                 </div>
+             </section>
+
+             <section id="grids" class="ds-section">
+                <div class="component-tag"><span>Component</span> <span class="status-tag status-stable">Stable</span></div>
+                <h2>Grids</h2> <p class="mb-xl">Sistema de layout baseado em CSS Grid para organizar conteúdo em colunas de forma responsiva.</p>
+
+                 <div class="demo-area">
+                      <div class="demo-tabs grids-tabs"> <div class="demo-tab active" data-tab="grids-preview">Preview</div>
+                         <div class="demo-tab" data-tab="grids-code">Code</div>
+                         <div class="demo-tab" data-tab="grids-usage">Usage</div>
+                         </div>
+
+                     <div class="preview-area" id="grids-preview-content">
+                         <div class="preview-toolbar">
+                             <button>View fullscreen</button>
+                             <button>Copy</button>
+                         </div>
+                         <p class="mb-lg">Exemplos de Grids usando cards como itens:</p>
+
+                         <h3 class="mb-lg">Grid de 2 colunas (`.grid.grid-2`)</h3>
+                         <div class="grid grid-2 mb-xl">
+                             <div class="card">Conteúdo na Coluna 1</div>
+                             <div class="card">Conteúdo na Coluna 2</div>
+                         </div>
+
+                         <h3 class="mb-lg">Grid de 3 colunas (`.grid.grid-3`)</h3>
+                         <div class="grid grid-3 mb-xl">
+                             <div class="card">Conteúdo na Coluna 1</div>
+                             <div class="card">Conteúdo na Coluna 2</div>
+                             <div class="card">Conteúdo na Coluna 3</div>
+                         </div>
+
+                         <h3 class="mb-lg">Grid de 4 colunas (`.grid.grid-4`)</h3>
+                         <div class="grid grid-4">
+                             <div class="card">Conteúdo na Coluna 1</div>
+                             <div class="card">Conteúdo na Coluna 2</div>
+                             <div class="card">Conteúdo na Coluna 3</div>
+                             <div class="card">Conteúdo na Coluna 4</div>
+                         </div>
+                          </div>
+
+                     <div class="code-area" id="grids-code-content">
+                         <pre><code class="language-html">&lt;!-- Grid de 2 colunas (responsivo) --&gt;
+&lt;div class="grid grid-2"&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Grid de 3 colunas (responsivo) --&gt;
+&lt;div class="grid grid-3"&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+    &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- Grid de 4 colunas (responsivo) --&gt;
+&lt;div class="grid grid-4"&gt;
+    &lt;div&gt;Item 1&lt;/div&gt;
+    &lt;div&gt;Item 2&lt;/div&gt;
+    &lt;div&gt;Item 3&lt;/div&gt;
+    &lt;div&gt;Item 4&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+                         <pre><code class="language-css">/* Estilo Base para Grids */
+.grid {
+    display: grid;
+    gap: var(--spacing-xl); /* Espaço padrão entre os itens */
+}
+
+/* Modificadores de Coluna (responsivos) */
+.grid-2 {
+    /* Cria colunas que se ajustam automaticamente, com tamanho mínimo de 250px */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.grid-3 {
+    /* Cria colunas que se ajustam automaticamente, com tamanho mínimo de 300px */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.grid-4 {
+    /* Cria colunas que se ajustam automaticamente, com tamanho mínimo de 200px */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* TODO: Adicionar breakpoints ou variações específicas se necessário */
+</code></pre>
+                     </div>
+
+                     <div class="controls-panel" id="grids-usage-content">
+                         <h3 style="margin-bottom: var(--spacing-md); font-size: var(--text-md);">Uso</h3>
+                          <p>Use a classe `.grid` em um contêiner (ex: `div`) e combine-a com uma classe modificadora como `.grid-2`, `.grid-3` ou `.grid-4` para definir o layout em colunas.</p>
+
+                          <h3 style="margin-bottom: var(--spacing-md); margin-top: var(--spacing-xl); font-size: var(--text-md);">Responsividade</h3>
+                          <p>As definições `minmax` e `auto-fit` garantem que as colunas se adaptem automaticamente à largura da tela. Em telas menores, os itens que não couberem na mesma linha passarão para a linha seguinte.</p>
+                     </div>
+                 </div>
+             </section>
+
+
+             <section id="figma" class="ds-section">
+                  <div class="component-tag"><span>Resources</span></div>
+                 <h2>Figma Library</h2> <p class="mb-xl">Acesse nossa biblioteca de componentes no Figma para utilizar os elementos visuais no seu trabalho de design.</p>
+                 </section>
+
+              <section id="templates" class="ds-section">
+                 <div class="component-tag"><span>Resources</span></div>
+                 <h2>Templates</h2> <p class="mb-xl">Templates de página e seção para agilizar o desenvolvimento e garantir consistência nos layouts.</p>
+                 </section>
+
+              <section id="changelog" class="ds-section">
+                  <div class="component-tag"><span>Resources</span></div>
+                 <h2>Changelog</h2> <p class="mb-xl">Histórico de alterações, novas funcionalidades e correções em cada versão do Design System.</p>
+                 </section>
+
+
         </main>
     </div>
 
     <script>
-        // Menu toggle functionality
+        // Mobile Menu Toggle
         document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.querySelector('.sidebar').classList.toggle('active');
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+            // Optional: Add overlay or body class to prevent scrolling when sidebar is open
+            // document.body.classList.toggle('sidebar-open');
         });
 
-        // Demo tabs functionality
-        const tabs = document.querySelectorAll('.demo-tab');
-        const previewArea = document.querySelector('.preview-area');
-        const codeArea = document.querySelector('.code-area');
-        
-        // Initially hide code area
-        codeArea.style.display = 'none';
-        
-        tabs.forEach((tab, index) => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                tab.classList.add('active');
-                
-                // Toggle content areas based on selected tab
-                if (index === 0) { // Preview tab
-                    previewArea.style.display = 'block';
-                    codeArea.style.display = 'none';
-                } else if (index === 1) { // Code tab
-                    previewArea.style.display = 'none';
-                    codeArea.style.display = 'block';
-                } else if (index === 2) { // Usage tab - for simplicity we're showing preview again
-                    previewArea.style.display = 'block';
-                    codeArea.style.display = 'none';
+        // Close sidebar when a link is clicked (on mobile)
+        document.querySelectorAll('.sidebar-menu a[href^="#"]').forEach(link => {
+            link.addEventListener('click', () => {
+                const sidebar = document.querySelector('.sidebar');
+                const isMobile = window.matchMedia("(max-width: 768px)").matches;
+                if (isMobile && sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                    // Optional: remove body class if used
+                    // document.body.classList.remove('sidebar-open');
                 }
             });
         });
+
+
+        // Demo Tabs functionality (for multiple demo areas)
+        // Find all demo areas
+        const allDemoAreas = document.querySelectorAll('.demo-area');
+
+        allDemoAreas.forEach(demoArea => {
+            const tabs = demoArea.querySelectorAll('.demo-tab');
+            // Map tabs to their corresponding content elements by data-tab attribute
+            const contentAreas = {
+                'color-preview': demoArea.querySelector('#color-preview-content'),
+                'color-code': demoArea.querySelector('#color-code-content'),
+                'color-usage': demoArea.querySelector('#color-usage-content'),
+                 'typography-preview': demoArea.querySelector('#typography-preview-content'),
+                 'typography-code': demoArea.querySelector('#typography-code-content'),
+                 'typography-usage': demoArea.querySelector('#typography-usage-content'),
+                  'spacing-preview': demoArea.querySelector('#spacing-preview-content'),
+                  'spacing-code': demoArea.querySelector('#spacing-code-content'),
+                  'spacing-usage': demoArea.querySelector('#spacing-usage-content'),
+                 'layout-preview': demoArea.querySelector('#layout-preview-content'),
+                 'layout-code': demoArea.querySelector('#layout-code-content'),
+                 'layout-usage': demoArea.querySelector('#layout-usage-content'),
+                 'buttons-preview': demoArea.querySelector('#buttons-preview-content'),
+                 'buttons-code': demoArea.querySelector('#buttons-code-content'),
+                 'buttons-usage': demoArea.querySelector('#buttons-usage-content'),
+                 'buttons-props': demoArea.querySelector('#buttons-props-content'),
+                 'cards-preview': demoArea.querySelector('#cards-preview-content'),
+                 'cards-code': demoArea.querySelector('#cards-code-content'),
+                 'cards-usage': demoArea.querySelector('#cards-usage-content'),
+                 'cards-props': demoArea.querySelector('#cards-props-content'),
+                 'tags-preview': demoArea.querySelector('#tags-preview-content'),
+                 'tags-code': demoArea.querySelector('#tags-code-content'),
+                 'tags-usage': demoArea.querySelector('#tags-usage-content'),
+                 'tags-props': demoArea.querySelector('#tags-props-content'),
+                 'forms-preview': demoArea.querySelector('#forms-preview-content'),
+                 'forms-code': demoArea.querySelector('#forms-code-content'),
+                 'forms-usage': demoArea.querySelector('#forms-usage-content'),
+                 'forms-props': demoArea.querySelector('#forms-props-content'),
+                 'header-preview': demoArea.querySelector('#header-preview-content'),
+                 'header-code': demoArea.querySelector('#header-code-content'),
+                 'header-usage': demoArea.querySelector('#header-usage-content'),
+                  'social-links-preview': demoArea.querySelector('#social-links-preview-content'),
+                  'social-links-code': demoArea.querySelector('#social-links-code-content'),
+                  'social-links-usage': demoArea.querySelector('#social-links-usage-content'),
+                  'grids-preview': demoArea.querySelector('#grids-preview-content'),
+                  'grids-code': demoArea.querySelector('#grids-code-content'),
+                  'grids-usage': demoArea.querySelector('#grids-usage-content'),
+                 // Add more tab content mappings here for other demo areas
+            };
+
+            // Hide all content areas except the active one on load
+            Object.keys(contentAreas).forEach(key => {
+                if (contentAreas[key] && !demoArea.querySelector('.demo-tab.active').dataset.tab.includes(key.split('-')[0])) {
+                     // Logic to hide all except the *first* preview area for *this* demo area
+                     const firstTabOfThisDemo = tabs[0].dataset.tab;
+                     if (key !== firstTabOfThisDemo) {
+                          contentAreas[key].style.display = 'none';
+                     } else {
+                           contentAreas[key].style.display = 'block'; // Ensure the first preview is shown
+                     }
+                } else if (contentAreas[key]) {
+                     // Handle the case where the first tab IS active on load
+                     const firstTabOfThisDemo = tabs[0].dataset.tab;
+                      if (key !== firstTabOfThisDemo) {
+                          contentAreas[key].style.display = 'none';
+                     } else {
+                           contentAreas[key].style.display = 'block';
+                     }
+                }
+            });
+
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs in this demo area
+                    tabs.forEach(t => t.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+
+                    // Hide all content areas for this demo area
+                     Object.values(contentAreas).forEach(content => {
+                         if(content) content.style.display = 'none';
+                     });
+
+                    // Show the content area corresponding to the clicked tab
+                    const targetTab = tab.dataset.tab;
+                    if (contentAreas[targetTab]) {
+                        contentAreas[targetTab].style.display = 'block';
+                    }
+                });
+            });
+        });
+
+
+        // Highlight active sidebar link on scroll
+        const sections = document.querySelectorAll('main section');
+        const sidebarLinks = document.querySelectorAll('.sidebar-menu a[href^="#"]');
+        const headerHeight = document.querySelector('.top-header').offsetHeight;
+        const scrollOffset = headerHeight + 30; // Header height + extra buffer
+
+
+        window.addEventListener('scroll', () => {
+             let current = '';
+             const fromTop = window.scrollY + scrollOffset; // Adjusted scroll position
+
+             sections.forEach(section => {
+                 const sectionTop = section.offsetTop;
+                 const sectionHeight = section.offsetHeight;
+
+                 if (fromTop >= sectionTop && fromTop < sectionTop + sectionHeight) {
+                     current = '#' + section.getAttribute('id');
+                 }
+             });
+
+             sidebarLinks.forEach(link => {
+                 link.classList.remove('active');
+                 if (link.getAttribute('href') === current) {
+                     link.classList.add('active');
+                 }
+             });
+        });
+        // Initial highlight on page load
+        window.dispatchEvent(new Event('scroll'));
+
+
+        // Smooth scrolling for anchor links (adjusting for fixed header)
+         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+             anchor.addEventListener('click', function (e) {
+                 const href = this.getAttribute('href');
+                 // Only prevent default for actual section links, not just #
+                 if (href !== '#' && href.length > 1) {
+                     e.preventDefault();
+                     const targetId = href;
+                     const targetElement = document.querySelector(targetId);
+
+                     if (targetElement) {
+                         // Use scrollIntoView with behavior smooth
+                          targetElement.scrollIntoView({
+                              behavior: 'smooth',
+                              block: 'start' // Scroll to the top of the element
+                          });
+
+                         // Optional: close mobile menu/sidebar after clicking a link
+                         const sidebar = document.querySelector('.sidebar');
+                         const isMobile = window.matchMedia("(max-width: 768px)").matches;
+                         if (isMobile && sidebar.classList.contains('active')) {
+                              sidebar.classList.remove('active');
+                         }
+                     }
+                 } else if (href === '#') {
+                      // If href is just #, scroll to top
+                     e.preventDefault();
+                     window.scrollTo({
+                         top: 0,
+                         behavior: 'smooth'
+                     });
+                 }
+             });
+         });
+
+
     </script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9380e8a2b967e12e","version":"2025.4.0-1-g37f21b1","r":1,"token":"9e8ac4e3434949e7bd9d31d78051756a","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
 </body>
 </html>
