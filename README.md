@@ -22,8 +22,6 @@ Você pode acessar o design system completo aqui:
 
 - HTML5
 - CSS3
-- [Divhunt](https://divhunt.com) (plataforma utilizada para desenvolvimento)
-- Figma (prototipação e documentação visual)
 
 ## Objetivo
 
